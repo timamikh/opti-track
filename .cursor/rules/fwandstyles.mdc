@@ -1,0 +1,63 @@
+---
+alwaysApply: false
+---
+{
+  "cursor_rules": {
+    "base": {
+      "language": "русский",
+      "stack": "nodejs, nuxt, vue, postgresql",
+      "code_style": "clean, structured, modern"
+    },
+    "fonts": {
+      "product_name": "Orbitron",
+      "headings": "Inter",
+      "text": "Montserrat",
+      "buttons": "Roboto"
+    },
+    "colors": {
+      "text_primary": "#FFFFFF",
+      "text_highlight": "#FFFF00",
+      "background_primary": "#0E111B",
+      "background_secondary": "#FFFFFF",
+      "accent": "#2A84D3",
+      "input_button": "#181C28"
+    },
+    "logo": {
+      "shape": "квадрат"
+    },
+    "code_comments": "подробные, развернутые комментарии на русском языке",
+    "formatting": {
+      "indentation": "2 spaces",
+      "max_line_length": 80,
+      "naming_convention": "camelCase для переменных, PascalCase для компонентов"
+    },
+    "file_organization": {
+      "component_structure": "Single File Components (SFC)",
+      "api_structure": "RESTful с четким разделением ресурсов"
+    },
+    "accessibility": {
+      "aria_attributes": true,
+      "keyboard_navigation": true,
+      "screen_readers": true
+    },
+    "performance": {
+      "code_splitting": true,
+      "lazy_loading": true,
+      "optimized_images": true
+    },
+    "responsive_design": {
+      "mobile_first": true,
+      "breakpoints": [
+        "320px",
+        "768px",
+        "1024px",
+        "1440px"
+      ]
+    },
+    "security": {
+      "input_validation": true,
+      "xss_protection": true,
+      "csrf_protection": true
+    }
+  }
+}
