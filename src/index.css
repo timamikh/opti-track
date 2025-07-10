@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import './styles/fonts.css';
 
 @layer base {
   html {
-    @apply scroll-smooth;
+    font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   body {
-    @apply bg-bg-primary text-text-primary font-body;
+    @apply bg-bg-primary text-text-primary;
+    font-family: var(--font-montserrat);
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    font-family: var(--font-inter);
   }
   button {
-    @apply font-button;
+    font-family: var(--font-roboto);
   }
 }
 
@@ -24,15 +24,22 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   .btn-primary {
-    @apply bg-accent text-text-primary font-button px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all duration-300;
+    @apply bg-accent text-text-primary px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all duration-300;
+    font-family: var(--font-roboto);
   }
   .btn-secondary {
-    @apply bg-input-button text-text-primary font-button px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all duration-300;
+    @apply bg-input-button text-text-primary px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all duration-300;
+    font-family: var(--font-roboto);
   }
   .section-title {
-    @apply text-3xl md:text-4xl font-heading font-bold mb-4;
+    @apply text-3xl md:text-4xl font-bold mb-4;
+    font-family: var(--font-inter);
   }
   .section-subtitle {
-    @apply text-lg md:text-xl font-body text-text-primary/80 mb-8;
+    @apply text-lg md:text-xl text-text-primary/80 mb-8;
+    font-family: var(--font-montserrat);
+  }
+  .product-name {
+    font-family: var(--font-orbitron);
   }
 } 

@@ -1,6 +1,9 @@
 function Home() {
   return (
     <div className="bg-white">
+      <div style={{ fontFamily: 'Orbitron, sans-serif', fontSize: 32, color: '#FFD700', margin: 24, background: '#181C28', padding: 16, borderRadius: 8 }}>
+        Тест Orbitron: если этот текст отличается от обычного — шрифт работает!
+      </div>
       {/* Hero Section */}
       <div className="relative bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
