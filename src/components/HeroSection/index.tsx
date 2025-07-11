@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ContactModal from '../ContactModal';
+import routePlanningImg from '/assets/images/solution/route-planning.jpg';
 
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,11 +38,13 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="flex justify-center lg:justify-end">
-            <img
-              src="/images/logo.svg"
-              alt="Optitrack Logo"
-              className="w-full max-w-md"
-            />
+            <div className="rounded-lg overflow-hidden shadow-xl">
+              <img
+                src={routePlanningImg}
+                alt="Optitrack TMS"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>

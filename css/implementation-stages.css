@@ -1,0 +1,183 @@
+/* Styles for Implementation Stages component */
+
+.stage-card {
+  position: relative;
+  background-color: var(--color-input-button);
+  border-radius: 0.5rem;
+  transition: all 0.5s;
+  height: 100%;
+}
+
+.stage-card.highlight {
+  border: 1px solid rgba(42, 132, 211, 0.3);
+}
+
+.stage-card.expanded {
+  transform: scale(1.02);
+}
+
+.stage-header {
+  padding: 1rem;
+  cursor: pointer;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-header.highlight {
+  background-color: rgba(42, 132, 211, 0.15);
+}
+
+.stage-number {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  font-weight: bold;
+  background-color: var(--color-input-button);
+  border: 1px solid rgba(42, 132, 211, 0.4);
+  color: rgba(42, 132, 211, 0.8);
+  transition: all 0.3s;
+}
+
+.stage-number.highlight {
+  background-color: rgba(42, 132, 211, 0.15);
+  color: var(--color-accent);
+  border: 1px solid rgba(42, 132, 211, 0.3);
+}
+
+.stage-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.stage-duration {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.toggle-button {
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  font-size: 0.875rem;
+}
+
+.toggle-icon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s;
+  margin-left: 0.25rem;
+}
+
+.toggle-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.stage-content {
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+.stage-content.expanded {
+  max-height: 300px;
+  opacity: 1;
+  padding: 1rem;
+  padding-top: 0;
+}
+
+.stage-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+}
+
+.divider {
+  height: 1px;
+  background-color: rgba(42, 132, 211, 0.2);
+  margin-bottom: 1rem;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  font-size: 0.875rem;
+}
+
+.task-bullet {
+  color: var(--color-accent);
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.task-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mobile slider styles */
+.mobile-slider {
+  overflow-x: auto;
+  padding-bottom: 1.5rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-slide {
+  scroll-snap-align: center;
+  min-width: 85vw;
+  padding: 0 0.5rem;
+  flex-shrink: 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.pagination-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  transition: all 0.3s;
+  background-color: rgba(42, 132, 211, 0.3);
+}
+
+.pagination-dot.active {
+  background-color: var(--color-accent);
+  transform: scale(1.25);
+}
+
+/* Animations */
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-slide-up {
+  animation: fadeInSlideUp 0.3s ease-out forwards;
+}

@@ -43,4 +43,7 @@ export interface AdditionalModule {
   title: string;
   description: string;
   icon: JSX.Element;
-} 
+}
+
+// Экспорт типов блога
+export * from './blog'; 

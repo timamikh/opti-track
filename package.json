@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "keystone": "cd keystone-cms && npm run dev"
   },
   "dependencies": {
+    "axios": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.1"
@@ -29,5 +31,18 @@
     "terser": "^5.26.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
-  }
+  },
+  "description": "## Deployment Instructions",
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timamikh/opti-track.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timamikh/opti-track/issues"
+  },
+  "homepage": "https://github.com/timamikh/opti-track#readme"
 }

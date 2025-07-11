@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer: FC = () => {
   return (
@@ -54,9 +55,9 @@ const Footer: FC = () => {
                 </a>
               </li>
               <li>
-                <a href="/blog" className="text-text-primary/60 hover:text-accent transition-colors">
+                <Link to="/blog" className="text-text-primary/60 hover:text-accent transition-colors">
                   Блог
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="/careers" className="text-text-primary/60 hover:text-accent transition-colors">
@@ -117,6 +118,12 @@ const Footer: FC = () => {
               >
                 Условия использования
               </a>
+              <Link
+                to="/login"
+                className="text-text-primary/60 hover:text-accent transition-colors text-sm"
+              >
+                Вход для авторов
+              </Link>
             </div>
           </div>
         </div>

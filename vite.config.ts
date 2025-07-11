@@ -20,7 +20,8 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
+    port: 8000, // Используем порт 8000 для React-приложения
+    strictPort: true, // Не использовать другие порты, если 8000 занят
     host: true,
     open: true,
   },

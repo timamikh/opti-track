@@ -12,6 +12,32 @@ docker-compose up
 
 This will start the development server with hot-reload at http://localhost:3000
 
+### Blog CMS (KeystoneJS)
+
+The project includes a blog powered by KeystoneJS. To run the CMS:
+
+1. Install dependencies for the KeystoneJS CMS:
+```bash
+cd keystone-cms
+npm install
+```
+
+2. Start the KeystoneJS development server:
+```bash
+npm run dev
+```
+
+Or you can use the shortcut command from the root directory:
+```bash
+npm run keystone
+```
+
+The CMS will be available at:
+- Admin panel: http://localhost:3000/admin
+- GraphQL API: http://localhost:3000/api/graphql
+
+For more details, see the [KeystoneJS CMS README](./keystone-cms/README.md).
+
 ### Production Deployment
 
 To deploy the application in production:
