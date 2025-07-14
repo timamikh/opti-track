@@ -7,8 +7,10 @@ import Features from './pages/Features';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Login from './pages/Login';
+import About from './pages/About';
 import Layout from './components/Layout';
 import '@styles/global.css';
+import './styles/about.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -20,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="features" element={<Features />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:slug" element={<BlogPost />} />
-          <Route path="about" element={<App />} />
+          <Route path="about" element={<About />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>

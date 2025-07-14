@@ -1,0 +1,99 @@
+/* Стили для иконок преимуществ */
+.advantage-icon {
+  @apply w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-4 text-white;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.advantage-card:hover .advantage-icon {
+  transform: scale(1.1);
+  @apply bg-accent/90;
+}
+
+/* Стили для временной линии истории */
+.history-timeline {
+  position: relative;
+}
+
+.history-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(25% - 1px);
+  width: 2px;
+  background-color: theme('colors.accent');
+  z-index: 1;
+}
+
+.history-point {
+  position: relative;
+  z-index: 2;
+}
+
+.history-point::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(25% - 8px);
+  width: 16px;
+  height: 16px;
+  background-color: theme('colors.accent');
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.history-item {
+  transition: all 0.3s ease;
+}
+
+.history-item:hover {
+  /* Убираем смещение при наведении */
+  color: theme('colors.accent');
+}
+
+.history-item:hover .history-point::before {
+  transform: translateY(-50%) scale(1.5);
+  background-color: theme('colors.accent/90');
+  box-shadow: 0 0 10px theme('colors.accent');
+}
+
+/* Стили для клиентов */
+.client-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.client-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Стили для продуктов */
+.product-card {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  @apply bg-input-button/90;
+}
+
+.product-link {
+  position: relative;
+  display: inline-block;
+}
+
+.product-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: theme('colors.accent');
+  transition: width 0.3s ease;
+}
+
+.product-link:hover::after {
+  width: 100%;
+} 
