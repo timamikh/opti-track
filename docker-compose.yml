@@ -6,9 +6,37 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000"
+      - "8000:8000"  # Updated to match the React app port in config
     volumes:
       - .:/app
       - /app/node_modules
     environment:
-      - NODE_ENV=development 
+      - NODE_ENV=development
+      - SESSION_SECRET=dev-session-secret-for-keystone-cms
+    # Add healthcheck
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+  
+  keystone:
+    build:
+      context: ./keystone-cms
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Keystone CMS port
+    volumes:
+      - ./keystone-cms:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - SESSION_SECRET=dev-session-secret-for-keystone-cms
+    # Add healthcheck
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/graphql"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s 

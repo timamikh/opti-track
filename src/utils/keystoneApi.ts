@@ -1,17 +1,15 @@
 import axios from 'axios';
+import { apiConfig } from '../config/api';
 
-const API_URL = 'http://localhost:3000/api/graphql';
-
-// Создаем экземпляр axios с базовым URL
+// Create an axios instance with the base URL from config
 const api = axios.create({
-  baseURL: API_URL,
-  withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  baseURL: apiConfig.endpoints.keystone.graphql,
+  withCredentials: apiConfig.request.withCredentials,
+  headers: apiConfig.request.headers,
+  timeout: apiConfig.request.timeout
 });
 
-// Добавляем обработчик ошибок
+// Add error handler
 api.interceptors.response.use(
   response => response,
   error => {
@@ -26,7 +24,7 @@ api.interceptors.response.use(
   }
 );
 
-// Функция для выполнения GraphQL запросов
+// Function to execute GraphQL queries
 export const executeQuery = async (query: string, variables = {}) => {
   try {
     const response = await api.post('', {
@@ -45,9 +43,9 @@ export const executeQuery = async (query: string, variables = {}) => {
   }
 };
 
-// Функции для работы с постами блога
+// Blog API functions
 export const blogApi = {
-  // Получить все посты
+  // Get all posts
   getPosts: async () => {
     const query = `
       query GetPosts {
@@ -78,7 +76,7 @@ export const blogApi = {
     }
   },
   
-  // Получить пост по slug
+  // Get post by slug
   getPostBySlug: async (slug: string) => {
     const query = `
       query GetPostBySlug($slug: String!) {
@@ -116,7 +114,7 @@ export const blogApi = {
     }
   },
   
-  // Получить посты по категории
+  // Get posts by category
   getPostsByCategory: async (categorySlug: string) => {
     const query = `
       query GetPostsByCategory($categorySlug: String!) {
@@ -147,7 +145,7 @@ export const blogApi = {
     }
   },
   
-  // Получить все категории
+  // Get all categories
   getCategories: async () => {
     const query = `
       query GetCategories {
@@ -169,7 +167,7 @@ export const blogApi = {
     }
   },
   
-  // Получить все теги
+  // Get all tags
   getTags: async () => {
     const query = `
       query GetTags {
@@ -191,9 +189,9 @@ export const blogApi = {
   },
 };
 
-// Функции для авторизации
+// Authentication API functions
 export const authApi = {
-  // Вход пользователя
+  // User login
   login: async (email: string, password: string) => {
     const query = `
       mutation Login($email: String!, $password: String!) {
@@ -223,7 +221,7 @@ export const authApi = {
     }
   },
   
-  // Выход пользователя
+  // User logout
   logout: async () => {
     const query = `
       mutation Logout {
@@ -240,7 +238,7 @@ export const authApi = {
     }
   },
   
-  // Получить текущего пользователя
+  // Get current user
   getCurrentUser: async () => {
     const query = `
       query GetCurrentUser {

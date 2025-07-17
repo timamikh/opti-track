@@ -8,7 +8,11 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "keystone": "cd keystone-cms && npm run dev"
+    "keystone": "cd keystone-cms && npm run dev",
+    "check-duplicates": "node scripts/check-duplicates.js",
+    "start:dev": "docker-compose up",
+    "start:prod": "docker-compose -f docker-compose.prod.yml up -d",
+    "setup": "node scripts/setup.js"
   },
   "dependencies": {
     "axios": "^1.10.0",
@@ -32,13 +36,19 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
   },
-  "description": "## Deployment Instructions",
+  "description": "Modern logistics tracking and management solution",
   "main": "postcss.config.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/timamikh/opti-track.git"
   },
-  "keywords": [],
+  "keywords": [
+    "logistics",
+    "tracking",
+    "management",
+    "react",
+    "keystone"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {

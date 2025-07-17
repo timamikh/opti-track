@@ -10,6 +10,9 @@ services:
       - "80:80"
     networks:
       - web-network
+    environment:
+      - NODE_ENV=production
+      - SESSION_SECRET=${SESSION_SECRET:-prod-session-secret-for-keystone-cms}
     # Limit resources
     deploy:
       resources:
@@ -23,6 +26,38 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+  
+  keystone:
+    build:
+      context: ./keystone-cms
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"  # Keystone CMS port
+    networks:
+      - web-network
+    environment:
+      - NODE_ENV=production
+      - SESSION_SECRET=${SESSION_SECRET:-prod-session-secret-for-keystone-cms}
+    # Limit resources
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 384M
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/graphql"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    volumes:
+      - keystone-data:/app/keystone.db  # Persist database
+
+volumes:
+  keystone-data:
+    driver: local
 
 networks:
   web-network:

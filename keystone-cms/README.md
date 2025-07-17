@@ -1,79 +1,131 @@
-# KeystoneJS CMS для блога Opti-Track
+# Opti-Track KeystoneJS CMS
 
-Этот проект содержит CMS на базе KeystoneJS для управления блогом Opti-Track.
+This directory contains the KeystoneJS CMS for the Opti-Track blog.
 
-## Требования
+## Structure
 
-- Node.js 16+ 
-- npm или yarn
+- `keystone.ts` - Main KeystoneJS configuration file
+- `schema.ts` - Data schema definition
+- `auth.ts` - Authentication configuration
+- `schema.graphql` - Generated GraphQL schema
+- `schema.prisma` - Generated Prisma schema
 
-## Установка
+## Quick Start
 
-1. Установите зависимости:
+To run the KeystoneJS CMS:
 
 ```bash
+# Install dependencies
 npm install
-```
 
-2. Запустите KeystoneJS в режиме разработки:
-
-```bash
+# Start the development server
 npm run dev
 ```
 
-CMS будет доступна по адресу http://localhost:3000
+The CMS will be available at:
+- Admin panel: http://localhost:3000/admin
+- GraphQL API: http://localhost:3000/api/graphql
 
-Админ-панель: http://localhost:3000/admin
+## Configuration
 
-GraphQL API: http://localhost:3000/api/graphql
+The CMS uses configuration files from the parent project's `src/config` directory:
 
-## Структура данных
+- `server.ts` - Server configuration (port, CORS settings)
+- `database.ts` - Database connection settings
+- `auth.ts` - Authentication settings
 
-CMS содержит следующие модели данных:
+## Data Models
 
-- **User** - пользователи системы (авторы блога)
-  - name: имя пользователя
-  - email: email для входа
-  - password: пароль
-  - role: роль (admin, editor, smm)
-  - posts: связь с постами
+The CMS includes the following data models:
 
-- **Post** - статьи блога
-  - title: заголовок
-  - slug: URL-дружественный идентификатор
-  - status: статус (published, draft)
-  - content: содержимое в формате документа
-  - publishDate: дата публикации
-  - author: автор
-  - category: категория
-  - tags: теги
-  - image: изображение
+### User
 
-- **Category** - категории статей
-  - name: название
-  - slug: URL-дружественный идентификатор
-  - description: описание
-  - posts: связь со статьями
+- `name`: User's name
+- `email`: User's email (unique, used for login)
+- `password`: User's password (hashed)
+- `role`: User's role (admin, editor, smm)
+- `posts`: Relationship to posts authored by the user
 
-- **Tag** - теги для статей
-  - name: название
-  - slug: URL-дружественный идентификатор
-  - posts: связь со статьями
+### Post
 
-## Интеграция с React-приложением
+- `title`: Post title
+- `slug`: URL-friendly identifier (unique)
+- `status`: Post status (published, draft)
+- `content`: Post content (document format)
+- `publishDate`: Date of publication
+- `author`: Relationship to the post author
+- `category`: Relationship to the post category
+- `tags`: Relationship to post tags
+- `imageUrl`: URL of the post image
 
-Для взаимодействия с CMS из React-приложения используется GraphQL API. Клиент для API находится в файле `src/utils/keystoneApi.ts` основного приложения.
+### Category
 
-## Запуск в продакшн
+- `name`: Category name
+- `slug`: URL-friendly identifier (unique)
+- `description`: Category description
+- `posts`: Relationship to posts in this category
 
-1. Соберите проект:
+### Tag
 
-```bash
-npm run build
+- `name`: Tag name
+- `slug`: URL-friendly identifier (unique)
+- `posts`: Relationship to posts with this tag
+
+## GraphQL API
+
+The CMS provides a GraphQL API for interacting with the data models. Here are some example queries:
+
+### Get all posts
+
+```graphql
+query GetPosts {
+  posts {
+    id
+    title
+    slug
+    status
+    publishDate
+    imageUrl
+    author {
+      name
+    }
+    category {
+      name
+      slug
+    }
+  }
+}
 ```
 
-2. Запустите сервер:
+### Get post by slug
 
-```bash
-npm run start
-``` 
+```graphql
+query GetPostBySlug($slug: String!) {
+  posts(where: { slug: { equals: $slug } }) {
+    id
+    title
+    slug
+    status
+    content {
+      document
+    }
+    publishDate
+    imageUrl
+    author {
+      name
+    }
+    category {
+      name
+      slug
+    }
+    tags {
+      name
+      slug
+    }
+  }
+}
+```
+
+## Authentication
+
+The CMS uses stateless sessions with JWT for authentication. The session configuration can be customized in the `auth.ts` file. 

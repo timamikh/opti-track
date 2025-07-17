@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "keystone dev",
     "start": "keystone start",
-    "build": "keystone build"
+    "build": "keystone build",
+    "postinstall": "keystone postinstall"
   },
   "keywords": [],
   "author": "",
