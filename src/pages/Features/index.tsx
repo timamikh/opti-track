@@ -2,6 +2,27 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { functionalModules } from '../../components/FunctionalModules/data';
 
+// Функция для получения изображения модуля
+const getModuleImage = (moduleId: string): string => {
+  // Карта соответствия ID модулей и изображений
+  const imageMap: Record<string, string> = {
+    'transport-requests': '/images/solution/transport-orders.jpg',
+    'transport-planning': '/images/solution/route-planning.jpg',
+    'carrier-management': '/images/solution/carrier-management.jpg',
+    'tracking': '/images/solution/route-planning.jpg',
+    'document-management': '/images/solution/transport-orders.jpg',
+    'cost-control': '/images/solution/analytics-reporting.jpg',
+    'integrations': '/images/solution/carrier-management.jpg',
+    'load-optimization': '/images/solution/route-planning.jpg',
+    'analytics': '/images/solution/analytics-reporting.jpg',
+    'yard-management': '/images/solution/carrier-management.jpg',
+    'risk-management': '/images/solution/transport-orders.jpg'
+  };
+
+  // Возвращаем соответствующее изображение или изображение по умолчанию
+  return imageMap[moduleId] || '/images/solution/transport-orders.jpg';
+};
+
 const Features: FC = () => {
   return (
     <div className="pt-20 pb-16 bg-bg-primary">
@@ -23,22 +44,31 @@ const Features: FC = () => {
             <Link 
               key={module.id}
               to={`/features/${module.id}`}
-              className="bg-input-button p-6 rounded-lg border border-input-button/20 hover:border-accent/50 hover:shadow-lg transition-all group"
+              className="bg-input-button rounded-lg border border-input-button/20 hover:border-accent/50 hover:shadow-lg transition-all group overflow-hidden"
             >
-              <div className="flex items-center mb-4">
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 text-accent mr-4 group-hover:bg-accent group-hover:text-white transition-colors">
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={module.icon} />
-                  </svg>
-                </div>
-                <h2 className="text-xl font-bold text-text-primary group-hover:text-accent transition-colors">{module.title}</h2>
+              <div className="aspect-w-16 aspect-h-9 overflow-hidden">
+                <img 
+                  src={getModuleImage(module.id)} 
+                  alt={`Модуль ${module.title}`}
+                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
-              <div className="flex justify-end mt-4">
-                <div className="flex items-center text-sm text-accent font-medium">
-                  <span>Подробнее</span>
-                  <svg className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 text-accent mr-4 group-hover:bg-accent group-hover:text-white transition-colors">
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={module.icon} />
+                    </svg>
+                  </div>
+                  <h2 className="text-xl font-bold text-text-primary group-hover:text-accent transition-colors">{module.title}</h2>
+                </div>
+                <div className="flex justify-end mt-4">
+                  <div className="flex items-center text-sm text-accent font-medium">
+                    <span>Подробнее</span>
+                    <svg className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </Link>

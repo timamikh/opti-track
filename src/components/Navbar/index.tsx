@@ -68,9 +68,9 @@ const Navbar = () => {
             
             {/* Functional modules dropdown */}
             <div className="relative" ref={dropdownRef}>
-              <button 
+              <Link 
+                to="/features"
                 className={`flex items-center transition-colors relative ${isActive('/features') ? 'text-accent font-medium' : 'text-text-primary hover:text-accent'}`}
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 onMouseEnter={() => setIsDropdownOpen(true)}
               >
                 <span>Функциональные возможности</span>
@@ -83,7 +83,7 @@ const Navbar = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
                 {isActive('/features') && <span className="absolute -bottom-1.5 left-0 right-0 h-0.5 bg-accent"></span>}
-              </button>
+              </Link>
               
               {/* Dropdown menu */}
               {isDropdownOpen && (
@@ -164,7 +164,8 @@ const Navbar = () => {
             
             {/* Mobile dropdown for functional modules */}
             <div className="px-3 py-2">
-              <button 
+              <Link 
+                to="/features"
                 className={`flex items-center w-full text-left transition-colors ${isActive('/features') ? 'text-accent font-medium' : 'text-text-primary hover:text-accent'}`}
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
@@ -177,7 +178,7 @@ const Navbar = () => {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </Link>
               
               {isDropdownOpen && (
                 <div className="mt-2 pl-4 border-l-2 border-accent/30">
