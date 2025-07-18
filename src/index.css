@@ -42,4 +42,19 @@
   .product-name {
     font-family: var(--font-orbitron);
   }
+  .font-heading {
+    font-family: var(--font-inter);
+  }
+  .font-body {
+    font-family: var(--font-montserrat);
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 } 
