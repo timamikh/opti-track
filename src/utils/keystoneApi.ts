@@ -49,7 +49,7 @@ export const blogApi = {
   getPosts: async () => {
     const query = `
       query GetPosts {
-        posts(orderBy: [{ publishDate: desc }]) {
+        posts {
           id
           title
           slug
@@ -118,7 +118,7 @@ export const blogApi = {
   getPostsByCategory: async (categorySlug: string) => {
     const query = `
       query GetPostsByCategory($categorySlug: String!) {
-        posts(where: { category: { slug: { equals: $categorySlug } } }, orderBy: [{ publishDate: desc }]) {
+        posts(where: { category: { slug: { equals: $categorySlug } } }) {
           id
           title
           slug

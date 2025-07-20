@@ -17,6 +17,7 @@ const ExperienceSection: FC = () => {
   const [blogPosts, setBlogPosts] = useState<Post[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Данные показателей и результатов
   const experienceData: ExperienceData = {
@@ -47,7 +48,13 @@ const ExperienceSection: FC = () => {
     const fetchBlogPosts = async () => {
       try {
         const posts = await blogApi.getPosts();
-        setBlogPosts(posts.filter((post: Post) => post.status === 'published').slice(0, 6));
+        // Сортируем посты по дате публикации (от новых к старым)
+        const sortedPosts = posts ? [...posts].sort((a, b) => {
+          if (!a.publishDate) return 1;
+          if (!b.publishDate) return -1;
+          return new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime();
+        }) : [];
+        setBlogPosts(sortedPosts.filter((post: Post) => post.status === 'published').slice(0, 6));
       } catch (error) {
         console.error('Error fetching blog posts:', error);
       } finally {
@@ -56,6 +63,15 @@ const ExperienceSection: FC = () => {
     };
 
     fetchBlogPosts();
+  }, []);
+
+  // Анимация появления блоков
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 200);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Автоматическое переключение слайдов
@@ -108,9 +124,16 @@ const ExperienceSection: FC = () => {
               {experienceData.indicators.map((metric, index) => (
                 <div
                   key={index}
-                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 text-center h-24 flex flex-col justify-center transition-all duration-300 hover:bg-white/15"
+                  className={`bg-white/10 backdrop-blur-sm rounded-2xl p-4 text-center h-24 flex flex-col justify-center transition-all duration-500 hover:bg-white/15 hover:scale-105 hover:shadow-lg hover:shadow-[#2A84D3]/20 transform ${
+                    isVisible 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{
+                    animationDelay: `${index * 100}ms`
+                  }}
                 >
-                  <div className="text-3xl font-bold mb-2 text-[#2A84D3] font-button">
+                  <div className="text-3xl font-bold mb-2 text-[#2A84D3] font-button transition-all duration-300 hover:text-[#FFFF00]">
                     {metric.value}
                   </div>
                   <div className="text-sm text-white/80 leading-tight">
@@ -132,9 +155,16 @@ const ExperienceSection: FC = () => {
               {experienceData.results.map((metric, index) => (
                 <div
                   key={index}
-                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 text-center h-24 flex flex-col justify-center transition-all duration-300 hover:bg-white/15"
+                  className={`bg-white/10 backdrop-blur-sm rounded-2xl p-4 text-center h-24 flex flex-col justify-center transition-all duration-500 hover:bg-white/15 hover:scale-105 hover:shadow-lg hover:shadow-[#2A84D3]/20 transform ${
+                    isVisible 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{
+                    animationDelay: `${(index + 8) * 100}ms`
+                  }}
                 >
-                  <div className="text-3xl font-bold mb-2 text-[#2A84D3] font-button">
+                  <div className="text-3xl font-bold mb-2 text-[#2A84D3] font-button transition-all duration-300 hover:text-[#FFFF00]">
                     {metric.value}
                   </div>
                   <div className="text-sm text-white/80 leading-tight">

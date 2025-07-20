@@ -16,7 +16,13 @@ const Blog: FC = () => {
         // Добавим проверку доступности KeystoneJS
         try {
           const postsData = await blogApi.getPosts();
-          setPosts(postsData || []);
+          // Сортируем посты по дате публикации (от новых к старым)
+          const sortedPosts = postsData ? [...postsData].sort((a, b) => {
+            if (!a.publishDate) return 1;
+            if (!b.publishDate) return -1;
+            return new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime();
+          }) : [];
+          setPosts(sortedPosts);
           setKeystoneStatus('running');
           setError(null);
         } catch (err) {
