@@ -10,9 +10,13 @@ The project is organized as follows:
   - `config/` - Configuration files
   - `utils/` - Utility functions
   - `types/` - TypeScript type definitions
-  - `hooks/` - Custom React hooks
   - `styles/` - CSS files
 - `keystone-cms/` - KeystoneJS CMS for the blog
+  - `keystone.ts` - Main KeystoneJS configuration file
+  - `schema.ts` - Data schema definition
+  - `auth.ts` - Authentication configuration
+  - `schema.graphql` - Generated GraphQL schema
+  - `schema.prisma` - Generated Prisma schema
 - `public/` - Static assets
 - `assets/` - Source assets (images, etc.)
 - `scripts/` - Utility scripts
@@ -21,7 +25,7 @@ The project is organized as follows:
 
 The project uses a centralized configuration system located in `src/config/`:
 
-- `server.ts` - Server configuration (ports, hosts)
+- `server.ts` - Server configuration (ports, hosts, CORS settings)
 - `api.ts` - API endpoints and request settings
 - `database.ts` - Database connection settings
 - `auth.ts` - Authentication settings
@@ -90,7 +94,97 @@ The CMS will be available at:
 - Admin panel: http://localhost:3000/admin
 - GraphQL API: http://localhost:3000/api/graphql
 
-For more details, see the [KeystoneJS CMS README](./keystone-cms/README.md).
+#### KeystoneJS Data Models
+
+The CMS includes the following data models:
+
+##### User
+
+- `name`: User's name
+- `email`: User's email (unique, used for login)
+- `password`: User's password (hashed)
+- `role`: User's role (admin, editor, smm)
+- `posts`: Relationship to posts authored by the user
+
+##### Post
+
+- `title`: Post title
+- `slug`: URL-friendly identifier (unique)
+- `status`: Post status (published, draft)
+- `content`: Post content (document format)
+- `publishDate`: Date of publication
+- `author`: Relationship to the post author
+- `category`: Relationship to the post category
+- `tags`: Relationship to post tags
+- `imageUrl`: URL of the post image
+
+##### Category
+
+- `name`: Category name
+- `slug`: URL-friendly identifier (unique)
+- `description`: Category description
+- `posts`: Relationship to posts in this category
+
+##### Tag
+
+- `name`: Tag name
+- `slug`: URL-friendly identifier (unique)
+- `posts`: Relationship to posts with this tag
+
+#### GraphQL API
+
+The CMS provides a GraphQL API for interacting with the data models. Here are some example queries:
+
+##### Get all posts
+
+```graphql
+query GetPosts {
+  posts {
+    id
+    title
+    slug
+    status
+    publishDate
+    imageUrl
+    author {
+      name
+    }
+    category {
+      name
+      slug
+    }
+  }
+}
+```
+
+##### Get post by slug
+
+```graphql
+query GetPostBySlug($slug: String!) {
+  posts(where: { slug: { equals: $slug } }) {
+    id
+    title
+    slug
+    status
+    content {
+      document
+    }
+    publishDate
+    imageUrl
+    author {
+      name
+    }
+    category {
+      name
+      slug
+    }
+    tags {
+      name
+      slug
+    }
+  }
+}
+```
 
 ### Production Deployment
 
@@ -126,6 +220,7 @@ The production deployment includes several security measures:
 - Static asset caching
 - Gzip compression
 - Protection against common web vulnerabilities
+- Stateless sessions with JWT for authentication in the CMS
 
 ### Monitoring
 
