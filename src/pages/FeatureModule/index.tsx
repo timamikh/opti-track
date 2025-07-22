@@ -28,7 +28,7 @@ const FeatureModule: FC = () => {
   const { moduleId } = useParams<{ moduleId: string }>();
   const [module, setModule] = useState<FunctionalModule | null>(null);
   const [details, setDetails] = useState<ModuleDetail | null>(null);
-  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'benefits' | 'screenshots'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'effects' | 'screenshots'>('overview');
   const [activeScreenshot, setActiveScreenshot] = useState(0);
 
   useEffect(() => {
@@ -94,8 +94,8 @@ const FeatureModule: FC = () => {
               Технические особенности
             </button>
             <button 
-              className={`px-5 py-3 font-medium text-sm transition-colors ${activeTab === 'benefits' ? 'border-b-2 border-accent text-accent' : 'text-text-primary/70 hover:text-text-primary'}`}
-              onClick={() => setActiveTab('benefits')}
+              className={`px-5 py-3 font-medium text-sm transition-colors ${activeTab === 'effects' ? 'border-b-2 border-accent text-accent' : 'text-text-primary/70 hover:text-text-primary'}`}
+              onClick={() => setActiveTab('effects')}
             >
               Эффект от внедрения
             </button>
@@ -220,8 +220,8 @@ const FeatureModule: FC = () => {
           </div>
         )}
 
-        {/* Benefits tab */}
-        {activeTab === 'benefits' && (
+        {/* Effects tab (formerly Benefits) */}
+        {activeTab === 'effects' && (
           <div>
             <h2 className="text-2xl font-bold mb-8 text-text-primary">Эффект от внедрения</h2>
             
@@ -241,7 +241,7 @@ const FeatureModule: FC = () => {
             
             <div className="bg-gradient-to-r from-accent/20 to-accent/5 rounded-xl p-8">
               <div className="max-w-3xl mx-auto text-center">
-                <h3 className="text-xl font-bold mb-4 text-text-primary">Рассчитайте свою выгоду</h3>
+                <h3 className="text-xl font-bold mb-4 text-text-primary">Рассчитайте свой эффект</h3>
                 <p className="mb-6 text-text-primary/80">Мы поможем рассчитать потенциальную экономию и эффект от внедрения для вашего бизнеса.</p>
                 <button className="btn-primary">Получить расчет эффективности</button>
               </div>

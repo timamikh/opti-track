@@ -7,12 +7,14 @@ import ExperienceSection from './components/ExperienceSection';
 import SolutionDescription from './components/SolutionDescription';
 import TechnologicalAdvantage from './components/TechnologicalAdvantage';
 import ImplementationStages from './components/ImplementationStages';
+import BenefitsSection from './components/BenefitsSection';
 
 const App: FC = () => {
   return (
     <>
       <HeroSection />
       <LogisticsCycle />
+      <BenefitsSection />
       <LogisticsEcosystem />
       <FunctionalModules />
       <ExperienceSection />

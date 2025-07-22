@@ -164,6 +164,7 @@
   z-index: 1;
   height: 3px;
   box-shadow: 0 0 8px rgba(42, 132, 211, 0.6);
+  display: none;
 }
 
 .hexagon-item-1 .hexagon-connection {
@@ -286,7 +287,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
-  height: 100%;
+  height: 550px;
 }
 
 /* Integration cards alignment */
@@ -302,6 +303,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .integration-card:hover {

@@ -5,7 +5,7 @@ const Footer: FC = () => {
   return (
     <footer className="bg-bg-primary py-12 border-t border-text-primary/10">
       <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Логотип и описание */}
           <div>
             <img
@@ -13,87 +13,48 @@ const Footer: FC = () => {
               alt="Optitrack"
               className="h-8 mb-4"
             />
-            <p className="text-text-primary/60 text-sm">
+            <p className="text-text-primary/60 text-sm mb-4">
               Optitrack TMS – интеллектуальная система управления транспортом для современного бизнеса
             </p>
+            <div className="text-text-primary/60 text-sm">
+              <p className="mb-2">Продукт компании</p>
+              <a 
+                href="https://prospace.tech" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-accent hover:text-text-highlight transition-colors font-medium"
+              >
+                ProSpace
+              </a>
+            </div>
           </div>
 
-          {/* Продукт */}
+          {/* Политика конфиденциальности */}
           <div>
-            <h4 className="text-text-primary font-heading font-bold mb-4">Продукт</h4>
+            <h4 className="text-text-primary font-heading font-bold mb-4">Документы</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#features" className="text-text-primary/60 hover:text-accent transition-colors">
-                  Возможности
-                </a>
-              </li>
-              <li>
-                <a href="#advantages" className="text-text-primary/60 hover:text-accent transition-colors">
-                  Преимущества
-                </a>
-              </li>
-              <li>
-                <a href="#implementation" className="text-text-primary/60 hover:text-accent transition-colors">
-                  Внедрение
-                </a>
-              </li>
-              <li>
-                <a href="#pricing" className="text-text-primary/60 hover:text-accent transition-colors">
-                  Стоимость
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Компания */}
-          <div>
-            <h4 className="text-text-primary font-heading font-bold mb-4">Компания</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="/about" className="text-text-primary/60 hover:text-accent transition-colors">
-                  О нас
-                </a>
-              </li>
-              <li>
-                <Link to="/blog" className="text-text-primary/60 hover:text-accent transition-colors">
-                  Блог
+                <Link 
+                  to="/privacy-policy" 
+                  className="text-text-primary/60 hover:text-accent transition-colors"
+                >
+                  Политика конфиденциальности персональных данных
                 </Link>
               </li>
-              <li>
-                <a href="/careers" className="text-text-primary/60 hover:text-accent transition-colors">
-                  Карьера
-                </a>
-              </li>
-              <li>
-                <a href="/contacts" className="text-text-primary/60 hover:text-accent transition-colors">
-                  Контакты
-                </a>
-              </li>
             </ul>
           </div>
 
-          {/* Контакты */}
+          {/* Вход для авторов */}
           <div>
-            <h4 className="text-text-primary font-heading font-bold mb-4">Контакты</h4>
+            <h4 className="text-text-primary font-heading font-bold mb-4">Авторизация</h4>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="tel:+74951234567"
+                <Link
+                  to="/login"
                   className="text-text-primary/60 hover:text-accent transition-colors"
                 >
-                  +7 (495) 123-45-67
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:info@optitrack.ru"
-                  className="text-text-primary/60 hover:text-accent transition-colors"
-                >
-                  info@optitrack.ru
-                </a>
-              </li>
-              <li className="text-text-primary/60">
-                Москва, ул. Примерная, д. 1
+                  Вход для авторов
+                </Link>
               </li>
             </ul>
           </div>
@@ -106,18 +67,6 @@ const Footer: FC = () => {
               © {new Date().getFullYear()} Optitrack. Все права защищены.
             </div>
             <div className="flex space-x-6">
-              <a
-                href="/privacy"
-                className="text-text-primary/60 hover:text-accent transition-colors text-sm"
-              >
-                Политика конфиденциальности
-              </a>
-              <a
-                href="/terms"
-                className="text-text-primary/60 hover:text-accent transition-colors text-sm"
-              >
-                Условия использования
-              </a>
               <Link
                 to="/login"
                 className="text-text-primary/60 hover:text-accent transition-colors text-sm"

@@ -1,7 +1,12 @@
-import React from 'react';
+import { FC } from 'react';
 import './styles.css';
 
-const LogisticsCycle = () => {
+/**
+ * Компонент LogisticsCycle - отображает полный цикл логистических процессов
+ * от создания заявки до формирования счетов
+ */
+const LogisticsCycle: FC = () => {
+  // Шаги логистического цикла
   const cycleSteps = [
     {
       id: 1,
@@ -36,7 +41,7 @@ const LogisticsCycle = () => {
   ];
 
   return (
-    <section className="logistics-cycle-section py-16">
+    <section className="logistics-cycle-section py-16" aria-label="Цикл транспортной логистики">
       <div className="container-custom">
         <h2 className="section-title text-center">
           Управление всей цепочкой транспортной логистики
@@ -45,11 +50,16 @@ const LogisticsCycle = () => {
           От заявки до инвойса в едином цифровом пространстве
         </h3>
 
-        <div className="logistics-cycle-container">
+        <div className="logistics-cycle-container" role="list">
           {cycleSteps.map((step) => (
-            <div key={step.id} className="logistics-cycle-step">
+            <div 
+              key={step.id} 
+              className="logistics-cycle-step" 
+              role="listitem"
+              aria-label={`Этап ${step.id}: ${step.title}`}
+            >
               <div className="logistics-cycle-icon">
-                <div className={`icon-${step.icon}`}></div>
+                <div className={`icon-${step.icon}`} aria-hidden="true"></div>
               </div>
               <h4 className="logistics-cycle-title">{step.title}</h4>
               <p className="logistics-cycle-description">{step.description}</p>

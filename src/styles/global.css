@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --text-primary: #FFFFFF;
+    --text-highlight: #FFFF00;
+    --bg-primary: #0E111B;
+    --bg-secondary: #FFFFFF;
+    --accent: #2A84D3;
+    --input-button: #181C28;
+  }
+
   html {
     @apply scroll-smooth;
   }

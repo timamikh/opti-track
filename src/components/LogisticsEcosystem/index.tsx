@@ -1,7 +1,12 @@
-import React from 'react';
+import { FC } from 'react';
 import './styles.css';
 
-const LogisticsEcosystem = () => {
+/**
+ * Компонент LogisticsEcosystem - отображает экосистему логистических процессов
+ * с участниками и интеграциями в гексагональной структуре
+ */
+const LogisticsEcosystem: FC = () => {
+  // Данные участников логистического процесса
   const participants = [
     {
       id: 1,
@@ -41,6 +46,7 @@ const LogisticsEcosystem = () => {
     }
   ];
 
+  // Данные интеграций с внешними системами
   const integrations = [
     {
       id: 1,
@@ -73,14 +79,14 @@ const LogisticsEcosystem = () => {
   ];
 
   return (
-    <section className="logistics-ecosystem-section py-16">
+    <section className="logistics-ecosystem-section py-16" aria-label="Экосистема логистических процессов">
       <div className="container-custom">
         <h2 className="section-title text-center">
           Единая экосистема для всех участников логистического процесса
         </h2>
 
         <div className="ecosystem-layout">
-          {/* Left Side - Hexagonal Grid */}
+          {/* Левая часть - Гексагональная структура */}
           <div className="ecosystem-left">
             <h3 className="section-subtitle text-center">
               Эффективное взаимодействие всех ролей
@@ -89,7 +95,9 @@ const LogisticsEcosystem = () => {
             <div className="hexagon-structure">
               <div className="hexagon-center">
                 <div className="hexagon-content">
-                  <div className="tms-icon">Opti-track<br/>TMS</div>
+                  <div className="tms-icon font-product" aria-label="Центральный элемент - Opti-track TMS">
+                    Opti-track<br/>TMS
+                  </div>
                 </div>
               </div>
               
@@ -97,10 +105,11 @@ const LogisticsEcosystem = () => {
                 <div 
                   key={participant.id} 
                   className={`hexagon-item hexagon-item-${index + 1}`}
+                  aria-label={`Участник: ${participant.title}`}
                 >
                   <div className="hexagon-content">
                     <div className="participant-icon">
-                      <div className={`icon-${participant.icon}`}></div>
+                      <div className={`icon-${participant.icon}`} aria-hidden="true"></div>
                     </div>
                     <h4 className="participant-title">{participant.title}</h4>
                     <p className="participant-description">{participant.description}</p>
@@ -111,7 +120,7 @@ const LogisticsEcosystem = () => {
             </div>
           </div>
 
-          {/* Right Side - Integration Blocks */}
+          {/* Правая часть - Блоки интеграций */}
           <div className="ecosystem-right">
             <h3 className="section-subtitle text-center">
               Бесшовная интеграция с ключевыми системами
@@ -119,9 +128,13 @@ const LogisticsEcosystem = () => {
 
             <div className="integrations-grid">
               {integrations.map((integration) => (
-                <div key={integration.id} className="integration-card">
+                <div 
+                  key={integration.id} 
+                  className="integration-card"
+                  aria-label={`Интеграция: ${integration.title}`}
+                >
                   <div className="integration-icon">
-                    <div className={`icon-${integration.icon}`}></div>
+                    <div className={`icon-${integration.icon}`} aria-hidden="true"></div>
                   </div>
                   <h4 className="integration-title">{integration.title}</h4>
                   <p className="integration-description">{integration.description}</p>
